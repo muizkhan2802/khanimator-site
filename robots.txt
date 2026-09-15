@@ -1,0 +1,11 @@
+# PRE-LAUNCH — the site is closed to crawlers while placeholder copy is on it.
+#
+# TO GO LIVE:
+#   1. Replace the two lines below with:  Allow: /
+#   2. Remove the X-Robots-Tag header in netlify.toml
+#   3. Update the Sitemap URL to the real domain
+#
+User-agent: *
+Disallow: /
+
+Sitemap: https://khanimator.netlify.app/sitemap.xml
