@@ -1,10 +1,14 @@
 # Netlify configuration
 # Docs: https://docs.netlify.com/configure-builds/file-based-configuration/
 
-[build]
-  # No build command. build.py is a local development tool that commits its
-  # output; Netlify just serves the static files already in the repo.
-  publish = "."
+# No [build] section on purpose.
+#
+# There is no build command — build.py is a local development tool that commits
+# its output, so Netlify only has to serve the static files already in the repo.
+# With no build command and no publish directory set, Netlify serves the repo
+# root, which is exactly what we want. Setting `publish = "."` explicitly can
+# make Netlify treat the publish directory as identical to the base directory
+# and refuse the deploy, so it is deliberately left out.
 
 # ---------------------------------------------------------------- headers --
 
