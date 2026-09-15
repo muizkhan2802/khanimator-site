@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://khanimation.netlify.app/index.html</loc><priority>1.0</priority></url>
-  <url><loc>https://khanimation.netlify.app/work.html</loc><priority>0.8</priority></url>
-  <url><loc>https://khanimation.netlify.app/about.html</loc><priority>0.8</priority></url>
-  <url><loc>https://khanimation.netlify.app/support.html</loc><priority>0.8</priority></url>
-  <url><loc>https://khanimation.netlify.app/contact.html</loc><priority>0.8</priority></url>
-  <url><loc>https://khanimation.netlify.app/fan-animation.html</loc><priority>0.8</priority></url>
-  <url><loc>https://khanimation.netlify.app/stories.html</loc><priority>0.8</priority></url>
-  <url><loc>https://khanimation.netlify.app/collabs.html</loc><priority>0.8</priority></url>
-  <url><loc>https://khanimation.netlify.app/process.html</loc><priority>0.8</priority></url>
-  <url><loc>https://khanimation.netlify.app/early-khan.html</loc><priority>0.8</priority></url>
+  <url><loc>https://khanimator.netlify.app/index.html</loc><priority>1.0</priority></url>
+  <url><loc>https://khanimator.netlify.app/work.html</loc><priority>0.8</priority></url>
+  <url><loc>https://khanimator.netlify.app/about.html</loc><priority>0.8</priority></url>
+  <url><loc>https://khanimator.netlify.app/support.html</loc><priority>0.8</priority></url>
+  <url><loc>https://khanimator.netlify.app/contact.html</loc><priority>0.8</priority></url>
+  <url><loc>https://khanimator.netlify.app/fan-animation.html</loc><priority>0.8</priority></url>
+  <url><loc>https://khanimator.netlify.app/stories.html</loc><priority>0.8</priority></url>
+  <url><loc>https://khanimator.netlify.app/collabs.html</loc><priority>0.8</priority></url>
+  <url><loc>https://khanimator.netlify.app/process.html</loc><priority>0.8</priority></url>
+  <url><loc>https://khanimator.netlify.app/early-khan.html</loc><priority>0.8</priority></url>
 </urlset>

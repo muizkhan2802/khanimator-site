@@ -24,7 +24,7 @@ DATA = ROOT / "data" / "videos.json"
 # Absolute base URL, used only for sitemap.xml.
 # CHANGE THIS when the real domain is pointed at the site, then re-run the
 # build and update the Sitemap line in robots.txt to match.
-SITE_URL = "https://khanimation.netlify.app"
+SITE_URL = "https://khanimator.netlify.app"
 
 # Pages that should appear in the sitemap. Generated category pages are added
 # automatically; these are the hand-written ones. 404 and thanks are excluded
