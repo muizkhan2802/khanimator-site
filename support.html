@@ -100,11 +100,14 @@
   </section>
 
   <!-- ======================================================== TIERS -- -->
-  <!-- PLACEHOLDER TIERS
-       Patreon confirms membership starts at $1/month, but the individual tier
-       names, prices and benefits aren't public. Replace the three cards below
-       with his real tiers before launch — or, if he'd rather not maintain them
-       in two places, delete this section and keep the CTA alone. -->
+  <!-- Real tiers, taken from his Patreon on 29 Oct 2026. Benefits are
+       cumulative, so each rung states only what it ADDS. The italic lines are
+       his own words from the Patreon page, lightly trimmed.
+
+       Two further tiers exist above Diamond ($30 and $50) with joke names and
+       no descriptions; they're acknowledged in a line under the ladder rather
+       than given empty cards. Member counts are deliberately not shown — most
+       tiers sit at zero, which is worse than no number at all. -->
   <section class="section section--alt">
     <div class="wrap">
 
@@ -120,52 +123,79 @@
         </a>
       </div>
 
-      <div class="tiers">
+      <ol class="ladder" data-reveal>
 
-        <div class="tier" data-reveal>
-          <div class="tier__name">The Nod</div>
-          <div class="tier__price"><b>$1</b><span>/ month</span></div>
-          <ul>
-            <li>Name in the credits of every film</li>
-            <li>Patron-only posts and progress updates</li>
-            <li>Early word on what's in production</li>
-          </ul>
-          <a class="btn btn--ghost btn--block" href="https://www.patreon.com/user?u=84554672" target="_blank" rel="noopener">Join</a>
-        </div>
+        <li class="rung">
+          <div class="rung__price"><b>$1</b><span>/mo</span></div>
+          <div>
+            <div class="rung__name">Bronze</div>
+            <p class="rung__gets">Your name in the after-credits of every animation, and the rough drawings behind them.</p>
+          </div>
+          <a class="rung__go" href="https://www.patreon.com/user?u=84554672" target="_blank" rel="noopener">
+            Join
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="rung__voice">&ldquo;I appreciate every dollar.&rdquo;</p>
+        </li>
 
-        <div class="tier tier--featured" data-reveal data-reveal-delay="80">
-          <span class="tier__flag">Most popular</span>
-          <div class="tier__name">The Workshop</div>
-          <div class="tier__price"><b>$5</b><span>/ month</span></div>
-          <ul>
-            <li>Everything in The Nod</li>
-            <li>Rough cuts and animatics before release</li>
-            <li>Behind-the-scenes breakdowns of each fight</li>
-            <li>A vote on what gets animated next</li>
-          </ul>
-          <a class="btn btn--primary btn--block" href="https://www.patreon.com/user?u=84554672" target="_blank" rel="noopener">Join</a>
-        </div>
+        <li class="rung">
+          <div class="rung__price"><b>$3</b><span>/mo</span></div>
+          <div>
+            <div class="rung__name">Silver</div>
+            <p class="rung__gets">Genga, plus other art and animations that never make it to YouTube.</p>
+          </div>
+          <a class="rung__go" href="https://www.patreon.com/user?u=84554672" target="_blank" rel="noopener">
+            Join
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="rung__voice">&ldquo;I was gonna set this to 5 but 3 kind of has a nice ring to it.&rdquo;</p>
+        </li>
 
-        <div class="tier" data-reveal data-reveal-delay="160">
-          <div class="tier__name">The Studio</div>
-          <div class="tier__price"><b>$15</b><span>/ month</span></div>
-          <ul>
-            <li>Everything in The Workshop</li>
-            <li>Project files and frame-by-frame walkthroughs</li>
-            <li>Direct line on the Discord</li>
-            <li>Priority slot when commissions open</li>
-          </ul>
-          <a class="btn btn--ghost btn--block" href="https://www.patreon.com/user?u=84554672" target="_blank" rel="noopener">Join</a>
-        </div>
+        <li class="rung rung--featured">
+          <div class="rung__price"><b>$5</b><span>/mo</span></div>
+          <div>
+            <div class="rung__name">Gold <span class="rung__flag">HIGHLIGHTED</span></div>
+            <p class="rung__gets">Every animation earlier than any other platform.</p>
+          </div>
+          <a class="rung__go" href="https://www.patreon.com/user?u=84554672" target="_blank" rel="noopener">
+            Join
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="rung__voice">&ldquo;Heck, lets make one for 5 as well.&rdquo;</p>
+        </li>
 
-      </div>
+        <li class="rung">
+          <div class="rung__price"><b>$10</b><span>/mo</span></div>
+          <div>
+            <div class="rung__name">Platinum</div>
+            <p class="rung__gets">How the work happens behind the scenes &mdash; and a fanart, of sorts.</p>
+          </div>
+          <a class="rung__go" href="https://www.patreon.com/user?u=84554672" target="_blank" rel="noopener">
+            Join
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="rung__voice">&ldquo;Man, I&rsquo;ll cry if I receive one of these.&rdquo;</p>
+        </li>
 
-      <!-- LAUNCH BLOCKER — this banner must not survive to a public launch.
-           Either replace the three tiers with his real Patreon tiers, or
-           delete this whole section and keep the CTA above. -->
-      <p class="panel" style="margin-top:26px;text-align:center;border-color:var(--blood);color:var(--blood);font-weight:600;font-size:.9rem;padding:16px" data-reveal>
-        ⚠ Placeholder pricing — these tiers are invented. Only the $1 entry point is
-        confirmed. Replace with the real Patreon tiers, or remove this section, before launch.
+        <li class="rung">
+          <div class="rung__price"><b>$20</b><span>/mo</span></div>
+          <div>
+            <div class="rung__name">Diamond</div>
+            <p class="rung__gets">Top of the patrons list, first to hear new animation ideas, and everything earliest of all.</p>
+          </div>
+          <a class="rung__go" href="https://www.patreon.com/user?u=84554672" target="_blank" rel="noopener">
+            Join
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <p class="rung__voice">&ldquo;Wow you must really love my animations.&rdquo;</p>
+        </li>
+
+      </ol>
+
+      <p class="form__note" style="margin-top:20px" data-reveal>
+        Every tier includes everything below it. There are two more above Diamond,
+        named with diminishing seriousness &mdash;
+        <a href="https://www.patreon.com/user?u=84554672" target="_blank" rel="noopener" style="color:var(--accent)">go and look</a>.
       </p>
     </div>
   </section>

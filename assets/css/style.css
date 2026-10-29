@@ -658,93 +658,110 @@ p:last-child { margin-bottom: 0; }
 .tile p { color: var(--muted); font-size: .92rem; }
 
 /* -------------------------------------------------------- support tiers -- */
+/* A ladder, not a card grid. The real Patreon tiers are cumulative — each one
+   is "everything below, plus…" — which stacked rows express and three equal
+   cards do not. It also seats five tiers without orphaning a row.           */
 
-.tiers {
+.ladder {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-  gap: clamp(18px, 2.4vw, 26px);
-  align-items: start;
-}
-
-.tier {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  background: var(--surface);
+  gap: 1px;
+  background: var(--line);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: clamp(26px, 3.2vw, 36px);
-  transition: border-color .35s, transform .35s var(--ease);
+  overflow: hidden;
+  counter-reset: rung;
 }
-.tier:hover { border-color: var(--line-strong); transform: translateY(-4px); }
 
-.tier--featured {
-  border-color: var(--accent);
-  background: linear-gradient(180deg, rgba(255, 199, 44, .07) 0%, var(--surface) 55%);
+.rung {
+  display: grid;
+  grid-template-columns: 124px 1fr auto;
+  gap: 4px 24px;
+  align-items: center;
+  background: var(--bg);
+  padding: clamp(20px, 2.6vw, 28px) clamp(20px, 2.8vw, 32px);
+  transition: background-color .3s;
 }
-.tier--featured:hover { border-color: var(--accent); }
+.rung:hover { background: var(--surface); }
 
-.tier__flag {
-  position: absolute;
-  top: -11px;
-  left: clamp(26px, 3.2vw, 36px);
+.rung--featured {
+  background: linear-gradient(90deg, rgba(255, 199, 44, .08) 0%, var(--surface) 60%);
+}
+.rung--featured:hover { background: linear-gradient(90deg, rgba(255, 199, 44, .12) 0%, var(--surface) 60%); }
+
+.rung__price {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  grid-row: span 2;
+}
+.rung__price b {
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(2rem, 3.6vw, 2.6rem);
+  line-height: 1;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.rung__price span { font-size: .8rem; color: var(--dim); }
+
+.rung__name {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-size: 1.12rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  margin-bottom: 5px;
+}
+.rung__flag {
+  font-family: var(--body);
+  font-size: .62rem;
+  font-weight: 600;
+  letter-spacing: .13em;
   background: var(--accent);
   color: var(--accent-ink);
-  font-size: .66rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  padding: 4px 12px;
+  padding: 3px 9px;
   border-radius: 999px;
 }
 
-.tier__name {
-  font-family: var(--display);
-  font-size: 1.42rem;
-  text-transform: uppercase;
-  letter-spacing: .03em;
-  margin-bottom: 12px;
-}
-.tier__price {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
-  margin-bottom: 20px;
-}
-.tier__price b {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: clamp(2.2rem, 4vw, 2.9rem);
-  line-height: 1;
-  color: var(--accent);
-}
-.tier__price span { font-size: .84rem; color: var(--muted); }
+.rung__gets { font-size: .93rem; color: var(--muted); margin: 0; }
 
-.tier ul {
-  list-style: none;
-  margin: 0 0 26px;
-  padding: 0;
-  display: grid;
-  gap: 11px;
-  flex: 1;
+/* His own words from the Patreon page — the voice is worth keeping. */
+.rung__voice {
+  grid-column: 2;
+  font-size: .86rem;
+  font-style: italic;
+  color: var(--dim);
+  margin: 6px 0 0;
 }
-.tier li {
-  position: relative;
-  padding-left: 26px;
-  font-size: .91rem;
-  color: var(--muted);
-  line-height: 1.55;
+
+.rung__go {
+  grid-row: span 2;
+  font-size: .84rem;
+  font-weight: 600;
+  color: var(--accent);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
 }
-.tier li::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: .45em;
-  width: 13px;
-  height: 8px;
-  border-left: 2px solid var(--accent);
-  border-bottom: 2px solid var(--accent);
-  transform: rotate(-45deg);
+.rung__go svg { transition: transform .3s var(--ease); }
+.rung:hover .rung__go svg { transform: translateX(4px); }
+
+@media (max-width: 680px) {
+  .rung {
+    grid-template-columns: 1fr auto;
+    gap: 6px 16px;
+  }
+  .rung__price { grid-row: auto; grid-column: 1; }
+  .rung__name  { grid-column: 1 / -1; }
+  .rung__gets,
+  .rung__voice { grid-column: 1 / -1; }
+  .rung__go { grid-row: 1; grid-column: 2; align-self: center; }
 }
 
 /* -------------------------------------------------------- support ways -- */
