@@ -251,6 +251,19 @@ def animators_page(crew):
             credit = (f'            <div class="mate__credit">{check}'
                       f'<span>{esc(p["credit"])}</span></div>\n')
 
+        bio = (f'          <p class="mate__bio">{esc(p["bio"])}</p>\n'
+               if p.get("bio") else "")
+
+        stats = ""
+        if p.get("subs") or p.get("videos"):
+            bits = []
+            if p.get("subs"):
+                bits.append(f'<span><b>{esc(p["subs"])}</b> subscribers</span>')
+            if p.get("videos"):
+                bits.append(f'<span><b>{p["videos"]}</b> videos</span>')
+            stats = ('          <div class="mate__stats">'
+                     + "".join(bits) + "</div>\n")
+
         extra = "".join(
             f'              <a class="mate__link" href="{esc(l["url"])}" target="_blank" '
             f'rel="noopener">{esc(l["label"])}</a>\n'
@@ -266,13 +279,8 @@ def animators_page(crew):
               <div class="mate__handle">{esc(p['handle'])}</div>
             </div>
           </div>
-          <p class="mate__bio">{esc(p['bio'])}</p>
-{credit}          <div class="mate__tags">{tags}</div>
-          <div class="mate__stats">
-            <span><b>{esc(p['subs'])}</b> subscribers</span>
-            <span><b>{p['videos']}</b> videos</span>
-          </div>
-          <div class="mate__links">
+{bio}{credit}          <div class="mate__tags">{tags}</div>
+{stats}          <div class="mate__links">
               <a class="mate__link mate__link--main" href="{esc(p['url'])}" target="_blank" rel="noopener">YouTube</a>
 {extra}          </div>
         </article>""")
