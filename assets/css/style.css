@@ -796,110 +796,191 @@ p:last-child { margin-bottom: 0; }
 .way p { color: var(--muted); font-size: .91rem; }
 
 /* ---------------------------------------------------------- the crew -- */
+/* One panel per animator, alternating which side the portrait sits on, with
+   the description running down the middle. Three columns where there's a
+   video to show, two where there isn't.                                    */
 
-.crew {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
-  gap: clamp(18px, 2.4vw, 26px);
-}
+.crew { display: grid; gap: clamp(20px, 2.6vw, 30px); }
 
 .mate {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) minmax(0, 1fr) minmax(220px, 340px);
+  gap: clamp(26px, 3.6vw, 52px);
+  align-items: center;
   background: var(--surface);
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  padding: clamp(24px, 3vw, 30px);
-  transition: border-color .35s, transform .35s var(--ease);
+  padding: clamp(26px, 3.4vw, 46px);
+  transition: border-color .4s;
 }
-.mate:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+.mate:hover { border-color: var(--line-strong); }
+.mate--novideo { grid-template-columns: minmax(150px, 220px) minmax(0, 1fr); }
 
-.mate__top {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 16px;
+/* Even rows mirror: portrait to the right, video to the left. */
+/* grid-row is explicit on all three: on mirrored rows the body sits in an
+   earlier column than the portrait that precedes it in the DOM, and sparse
+   auto-placement would otherwise push it onto a second row. */
+.mate__portrait { grid-column: 1; grid-row: 1; }
+.mate__body     { grid-column: 2; grid-row: 1; }
+.mate__reel     { grid-column: 3; grid-row: 1; }
+
+.mate:nth-child(even) .mate__portrait { grid-column: 3; }
+.mate:nth-child(even) .mate__reel     { grid-column: 1; }
+/* Two-column cards mirror by flipping the template too, or the portrait
+   lands in the flexible column and stretches to fill it. */
+.mate--novideo:nth-child(even) {
+  grid-template-columns: minmax(0, 1fr) minmax(150px, 220px);
 }
-.mate__face {
-  width: 58px;
-  height: 58px;
+.mate--novideo:nth-child(even) .mate__portrait { grid-column: 2; }
+.mate--novideo:nth-child(even) .mate__body     { grid-column: 1; text-align: right; }
+.mate:nth-child(even) .mate__body .mate__credit { flex-direction: row-reverse; }
+.mate:nth-child(even) .mate__body .mate__meta,
+.mate:nth-child(even) .mate__body .mate__links { justify-content: flex-end; }
+.mate:nth-child(even) .mate__body { text-align: right; }
+
+/* ------------------------------------------------------------ portrait -- */
+
+.mate__portrait {
+  position: relative;
+  max-width: 220px;
+  justify-self: center;
+}
+.mate__portrait img {
+  width: 100%;
+  aspect-ratio: 1;
   border-radius: 50%;
   object-fit: cover;
-  border: 1px solid var(--line-strong);
-  flex: none;
+  border: 2px solid var(--line);
+  transition: border-color .4s, transform .5s var(--ease);
 }
-.mate__id { min-width: 0; }
+.mate:hover .mate__portrait img {
+  border-color: var(--accent);
+  transform: scale(1.02);
+}
+
+/* -------------------------------------------------------------- body -- */
+
+.mate__handle {
+  font-size: .78rem;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
 .mate__name {
   font-family: var(--display);
-  font-size: 1.14rem;
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: .98;
   text-transform: uppercase;
-  letter-spacing: .03em;
-  line-height: 1.1;
-  margin-bottom: 3px;
-  overflow-wrap: anywhere;
-}
-.mate__handle {
-  font-size: .8rem;
-  color: var(--muted);
+  letter-spacing: .01em;
+  margin: 0 0 18px;
   overflow-wrap: anywhere;
 }
 
+/* The descriptions are the point of this page, so they get display size. */
 .mate__bio {
-  font-size: .92rem;
-  color: var(--muted);
-  margin: 0 0 16px;
-  flex: 1;
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  line-height: 1.6;
+  color: #cfcfd4;
+  margin: 0 0 20px;
+  max-width: 46ch;
 }
+.mate:nth-child(even) .mate__bio { margin-left: auto; }
 
-/* A real shared credit, where one exists. Not every animator has one. */
 .mate__credit {
-  display: flex;
+  display: inline-flex;
   align-items: flex-start;
   gap: 9px;
-  font-size: .83rem;
+  font-size: .84rem;
   line-height: 1.45;
   color: var(--accent);
-  border-top: 1px solid var(--line);
-  padding-top: 14px;
-  margin-bottom: 14px;
-}
-.mate__credit svg { flex: none; margin-top: 2px; }
-
-.mate__tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
   margin-bottom: 18px;
 }
+.mate__credit svg { flex: none; margin-top: 3px; }
 
-.mate__stats {
+.mate__meta {
   display: flex;
-  gap: 16px;
-  font-size: .8rem;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: .82rem;
   color: var(--dim);
-  margin-bottom: 18px;
   font-variant-numeric: tabular-nums;
+  margin-bottom: 20px;
 }
-.mate__stats b { color: var(--text); font-weight: 600; }
+.mate__meta b { color: var(--text); font-weight: 600; }
 
-.mate__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-top: auto;
-}
+.mate__links { display: flex; flex-wrap: wrap; gap: 9px; }
 .mate__link {
-  font-size: .8rem;
+  font-size: .82rem;
   font-weight: 500;
-  padding: 7px 14px;
-  border: 1px solid var(--line);
+  padding: 8px 17px;
+  border: 1px solid var(--line-strong);
   border-radius: 999px;
   color: var(--muted);
-  transition: color .25s, border-color .25s;
+  transition: color .25s, border-color .25s, background-color .25s;
 }
 .mate__link:hover { color: var(--accent); border-color: var(--accent); }
-.mate__link--main { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
-.mate__link--main:hover { background: #ffd558; color: var(--accent-ink); border-color: #ffd558; }
+.mate__link--main {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 600;
+}
+.mate__link--main:hover { background: #ffd558; border-color: #ffd558; color: var(--accent-ink); }
+
+/* -------------------------------------------------------------- reel -- */
+
+.mate__reel .player { border-radius: 10px; }
+.mate__reel-cap {
+  margin-top: 11px;
+  font-size: .78rem;
+  color: var(--dim);
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: baseline;
+}
+.mate__reel-cap span:first-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mate__reel-cap b { color: var(--accent); font-weight: 600; flex: none; }
+
+/* ------------------------------------------------------------ stacked -- */
+
+@media (max-width: 900px) {
+  .mate,
+  .mate--novideo,
+  .mate:nth-child(even) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 24px;
+  }
+  .mate__portrait,
+  .mate__body,
+  .mate__reel,
+  .mate:nth-child(even) .mate__portrait,
+  .mate:nth-child(even) .mate__reel,
+  .mate--novideo:nth-child(even) .mate__portrait,
+  .mate--novideo:nth-child(even) .mate__body {
+    grid-column: 1;
+    grid-row: auto;
+    width: 100%;
+  }
+  .mate__portrait { max-width: 190px; }
+  .mate__body,
+  .mate:nth-child(even) .mate__body { text-align: center; }
+  .mate__bio,
+  .mate:nth-child(even) .mate__bio { margin-inline: auto; }
+  .mate__meta,
+  .mate__links,
+  .mate:nth-child(even) .mate__meta,
+  .mate:nth-child(even) .mate__links { justify-content: center; }
+  .mate:nth-child(even) .mate__credit { flex-direction: row; }
+}
 
 /* ----------------------------------------------------------- timeline -- */
 

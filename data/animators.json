@@ -3,13 +3,11 @@
   "_consent": "CONFIRMED 29 Oct 2026 — Moiz confirmed all listed animators have agreed to appear. Anyone added later needs the same before launch.",
   "_privacy": "Sasquatch's YouTube bio lists a personal email address and a per-cut rate. Both are deliberately NOT reproduced — republishing someone's email on a third party's commercial site invites scraping. His channel link is the contact route.",
   "_stats": "subs/videos are optional. Akk's channel hides its subscriber count, so his card omits the stats row rather than showing a zero.",
-
   "framing": {
     "eyebrow": "The crew",
     "title": "People I<br>build with",
     "blurb": "Animation at any scale is a group sport. These are animators whose work I rate and, in most cases, have shared a project with — go and watch their stuff."
   },
-
   "animators": [
     {
       "slug": "d-animations",
@@ -19,12 +17,23 @@
       "subs": "1.09K",
       "videos": 55,
       "bio": "Self-taught animator, nineteen, animating for the love of the game.",
-      "works": ["Fan animation", "Sakuga", "SFX"],
       "credit": "Key animator and co-SFX on Buggy Solos Sukuna",
       "links": [
-        { "label": "Ko-fi", "url": "https://ko-fi.com/driftonn" },
-        { "label": "Linktree", "url": "https://linktr.ee/Driftonn" }
-      ]
+        {
+          "label": "Ko-fi",
+          "url": "https://ko-fi.com/driftonn"
+        },
+        {
+          "label": "Linktree",
+          "url": "https://linktr.ee/Driftonn"
+        }
+      ],
+      "video": {
+        "id": "hSDbvpSX6SI",
+        "title": "Sukuna vs Buggy — my cut from the collaboration",
+        "views": "10.7K",
+        "thumb": "maxresdefault"
+      }
     },
     {
       "slug": "yeshrooms",
@@ -34,9 +43,9 @@
       "subs": "904",
       "videos": 14,
       "bio": "Flexibility incarnate — like someone put life into Roald Dahl's illustrations. An icon, and more than just an animator.",
-      "works": ["Fan animation", "Character work"],
       "credit": "Key animator on Buggy Solos Sukuna",
-      "links": []
+      "links": [],
+      "video": null
     },
     {
       "slug": "finmal",
@@ -46,23 +55,19 @@
       "subs": "340",
       "videos": 24,
       "bio": "Industry-level neat. A consistent art style the rest of us are still trying to catch up to.",
-      "works": ["Sakuga", "Music"],
       "credit": "Key animator on Buggy Solos Sukuna",
       "links": [
-        { "label": "Spotify", "url": "https://open.spotify.com/artist/1kSLgqJiHPSN7oifGgs0lS" }
-      ]
-    },
-    {
-      "slug": "sandeep",
-      "name": "Sandeep Kumar",
-      "handle": "@sandeepkant1815",
-      "url": "https://www.youtube.com/@sandeepkant1815",
-      "subs": "348",
-      "videos": 20,
-      "bio": "Not a professional, by his own account. Animates for fun anyway.",
-      "works": ["Fan animation"],
-      "credit": "Key animator on Buggy Solos Sukuna",
-      "links": []
+        {
+          "label": "Spotify",
+          "url": "https://open.spotify.com/artist/1kSLgqJiHPSN7oifGgs0lS"
+        }
+      ],
+      "video": {
+        "id": "Wty2xPrJaaE",
+        "title": "Orion weapon equip",
+        "views": "795",
+        "thumb": "maxresdefault"
+      }
     },
     {
       "slug": "akk",
@@ -70,9 +75,9 @@
       "handle": "@akk7006",
       "url": "https://www.youtube.com/@akk7006",
       "bio": null,
-      "works": ["Fan animation"],
       "credit": "Key animator on Buggy Solos Sukuna",
-      "links": []
+      "links": [],
+      "video": null
     },
     {
       "slug": "sasquatch",
@@ -82,12 +87,24 @@
       "subs": "677",
       "videos": 37,
       "bio": "Freelance animator working under the pen name Maasaki Amori. Takes work by the cut.",
-      "works": ["Freelance", "Sakuga"],
       "credit": null,
       "links": [
-        { "label": "Instagram", "url": "https://www.instagram.com/squatch._/" },
-        { "label": "TikTok", "url": "https://www.tiktok.com/@squatch420" }
-      ]
+        {
+          "label": "Instagram",
+          "url": "https://www.instagram.com/squatch._/"
+        },
+        {
+          "label": "TikTok",
+          "url": "https://www.tiktok.com/@squatch420"
+        }
+      ],
+      "video": {
+        "id": "qQECmjYeehg",
+        "title": "Invincible War: Conquest",
+        "views": "3.5K",
+        "thumb": "hqdefault"
+      }
     }
-  ]
+  ],
+  "_video": "Each animator's most-viewed recent upload, from their channel RSS feed. Yeshrooms and Akk have none: Yeshrooms' channel is science/robotics content, not animation, and Akk has no public uploads. Their cards omit the embed rather than showing something off-message."
 }

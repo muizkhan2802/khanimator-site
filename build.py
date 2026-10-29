@@ -234,56 +234,73 @@ def page(*, filename, title, description, eyebrow, h1, lead, cats, active,
 
 
 def animators_page(crew):
-    """Roster page. Generated from data/animators.json."""
+    """Roster page. Generated from data/animators.json.
+
+    One panel per animator. The portrait alternates sides via CSS
+    :nth-child, so the order here is the order on the page.
+    """
     f = crew["framing"]
     people = crew["animators"]
 
     check = ('<svg width="13" height="13" viewBox="0 0 24 24" fill="none" '
              'stroke="currentColor" stroke-width="3" stroke-linecap="round" '
              'stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>')
+    play = ('<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">'
+            '<path d="M8 5v14l11-7z"/></svg>')
 
     cards = []
     for p in people:
-        tags = "".join(f'<span class="tag">{esc(t)}</span>' for t in p.get("works", []))
-
-        credit = ""
-        if p.get("credit"):
-            credit = (f'            <div class="mate__credit">{check}'
-                      f'<span>{esc(p["credit"])}</span></div>\n')
-
-        bio = (f'          <p class="mate__bio">{esc(p["bio"])}</p>\n'
+        bio = (f'            <p class="mate__bio">{esc(p["bio"])}</p>\n'
                if p.get("bio") else "")
 
-        stats = ""
+        credit = (f'            <div class="mate__credit">{check}'
+                  f'<span>{esc(p["credit"])}</span></div>\n'
+                  if p.get("credit") else "")
+
+        meta = ""
         if p.get("subs") or p.get("videos"):
             bits = []
             if p.get("subs"):
                 bits.append(f'<span><b>{esc(p["subs"])}</b> subscribers</span>')
             if p.get("videos"):
                 bits.append(f'<span><b>{p["videos"]}</b> videos</span>')
-            stats = ('          <div class="mate__stats">'
-                     + "".join(bits) + "</div>\n")
+            meta = f'            <div class="mate__meta">{"".join(bits)}</div>\n'
 
-        extra = "".join(
-            f'              <a class="mate__link" href="{esc(l["url"])}" target="_blank" '
-            f'rel="noopener">{esc(l["label"])}</a>\n'
+        links = "".join(
+            f'              <a class="mate__link" href="{esc(l["url"])}" '
+            f'target="_blank" rel="noopener">{esc(l["label"])}</a>\n'
             for l in p.get("links", [])
         )
 
-        cards.append(f"""        <article class="mate" data-reveal>
-          <div class="mate__top">
-            <img class="mate__face" src="assets/img/animators/{p['slug']}.jpg"
-                 alt="{esc(p['name'])}" loading="lazy" width="58" height="58">
-            <div class="mate__id">
-              <div class="mate__name">{esc(p['name'])}</div>
-              <div class="mate__handle">{esc(p['handle'])}</div>
+        # Their own most-watched upload, where their channel has one.
+        v = p.get("video")
+        if v:
+            vt = esc(v["title"])
+            reel = f"""          <div class="mate__reel">
+            <div class="player" data-yt="{v['id']}" data-title="{vt}" role="button" tabindex="0">
+              <img src="https://i.ytimg.com/vi/{v['id']}/{v.get('thumb', 'hqdefault')}.jpg"
+                   alt="{vt}" loading="lazy">
+              <span class="player__play">{play}</span>
             </div>
+            <div class="mate__reel-cap"><span>{vt}</span><b>{esc(v['views'])} views</b></div>
           </div>
-{bio}{credit}          <div class="mate__tags">{tags}</div>
-{stats}          <div class="mate__links">
+"""
+        else:
+            reel = ""
+
+        cards.append(f"""        <article class="mate{'' if v else ' mate--novideo'}" data-reveal>
+          <div class="mate__portrait">
+            <img src="assets/img/animators/{p['slug']}.jpg" alt="{esc(p['name'])}"
+                 loading="lazy" width="220" height="220">
+          </div>
+          <div class="mate__body">
+            <div class="mate__handle">{esc(p['handle'])}</div>
+            <h2 class="mate__name">{esc(p['name'])}</h2>
+{bio}{credit}{meta}            <div class="mate__links">
               <a class="mate__link mate__link--main" href="{esc(p['url'])}" target="_blank" rel="noopener">YouTube</a>
-{extra}          </div>
-        </article>""")
+{links}            </div>
+          </div>
+{reel}        </article>""")
 
     return f"""<!DOCTYPE html>
 <html lang="en">
@@ -325,7 +342,7 @@ def animators_page(crew):
       <div class="crew">
 {chr(10).join(cards)}
       </div>
-      <p class="form__note" style="margin-top:30px" data-reveal>
+      <p class="form__note" style="margin-top:34px;text-align:center" data-reveal>
         More to come. If you animate and want to work on something together,
         the <a href="https://discord.gg/SVFk3C9xRk" target="_blank" rel="noopener"
         style="color:var(--accent)">Discord</a> is where it starts.
