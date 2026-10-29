@@ -153,6 +153,13 @@
 
             <input type="hidden" name="form-name" value="commission">
 
+            <!-- Sets the notification email subject, so a brief is findable
+                 in a full inbox instead of arriving as generic form noise.
+                 The field named "email" below also becomes the Reply-to
+                 header, so replying goes straight back to the sender. -->
+            <input type="hidden" name="subject"
+                   value="New commission brief from the Khanimator site">
+
             <!-- Spam trap: hidden from people, irresistible to bots. -->
             <p hidden>
               <label>Leave this empty: <input name="bot-field"></label>
