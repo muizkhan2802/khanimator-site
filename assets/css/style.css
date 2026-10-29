@@ -795,6 +795,112 @@ p:last-child { margin-bottom: 0; }
 }
 .way p { color: var(--muted); font-size: .91rem; }
 
+/* ---------------------------------------------------------- the crew -- */
+
+.crew {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: clamp(18px, 2.4vw, 26px);
+}
+
+.mate {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: clamp(24px, 3vw, 30px);
+  transition: border-color .35s, transform .35s var(--ease);
+}
+.mate:hover { border-color: var(--line-strong); transform: translateY(-3px); }
+
+.mate__top {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 16px;
+}
+.mate__face {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid var(--line-strong);
+  flex: none;
+}
+.mate__id { min-width: 0; }
+.mate__name {
+  font-family: var(--display);
+  font-size: 1.14rem;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+  line-height: 1.1;
+  margin-bottom: 3px;
+  overflow-wrap: anywhere;
+}
+.mate__handle {
+  font-size: .8rem;
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.mate__bio {
+  font-size: .92rem;
+  color: var(--muted);
+  margin: 0 0 16px;
+  flex: 1;
+}
+
+/* A real shared credit, where one exists. Not every animator has one. */
+.mate__credit {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-size: .83rem;
+  line-height: 1.45;
+  color: var(--accent);
+  border-top: 1px solid var(--line);
+  padding-top: 14px;
+  margin-bottom: 14px;
+}
+.mate__credit svg { flex: none; margin-top: 2px; }
+
+.mate__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.mate__stats {
+  display: flex;
+  gap: 16px;
+  font-size: .8rem;
+  color: var(--dim);
+  margin-bottom: 18px;
+  font-variant-numeric: tabular-nums;
+}
+.mate__stats b { color: var(--text); font-weight: 600; }
+
+.mate__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+.mate__link {
+  font-size: .8rem;
+  font-weight: 500;
+  padding: 7px 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--muted);
+  transition: color .25s, border-color .25s;
+}
+.mate__link:hover { color: var(--accent); border-color: var(--accent); }
+.mate__link--main { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 600; }
+.mate__link--main:hover { background: #ffd558; color: var(--accent-ink); border-color: #ffd558; }
+
 /* ----------------------------------------------------------- timeline -- */
 
 .timeline { list-style: none; margin: 0; padding: 0; position: relative; }

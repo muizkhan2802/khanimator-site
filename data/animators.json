@@ -1,0 +1,70 @@
+{
+  "_comment": "Roster of animators Khanimator works with. Captured 29 Oct 2026. Run `python build.py` after editing. Metrics drift — see the dynamic-stats note in README.",
+  "_consent": "PENDING. Every person listed here must have agreed to appear on a site that advertises paid work. Not yet confirmed for any of the four. The site is noindex until it is.",
+  "_privacy": "Sasquatch's YouTube bio lists a personal email address and a per-cut rate. Both are deliberately NOT reproduced here — republishing someone's email on a third party's commercial site invites scraping. His channel link is the contact route.",
+
+  "framing": {
+    "eyebrow": "The crew",
+    "title": "People I<br>build with",
+    "blurb": "Animation at any scale is a group sport. These are animators whose work I rate and, in most cases, have shared a project with — go and watch their stuff."
+  },
+
+  "animators": [
+    {
+      "slug": "d-animations",
+      "name": "D.animations",
+      "handle": "@Driftonn",
+      "url": "https://www.youtube.com/@Driftonn",
+      "subs": "1.09K",
+      "videos": 55,
+      "bio": "Self-taught animator, nineteen, animating for the love of the game.",
+      "works": ["Fan animation", "Sakuga", "FlipaClip"],
+      "credit": "Key animator and co-SFX on Buggy Solos Sukuna",
+      "links": [
+        { "label": "Ko-fi", "url": "https://ko-fi.com/driftonn" },
+        { "label": "Linktree", "url": "https://linktr.ee/Driftonn" }
+      ]
+    },
+    {
+      "slug": "yeshrooms",
+      "name": "Yeshrooms",
+      "handle": "@yeshroomsyt",
+      "url": "https://www.youtube.com/@yeshroomsyt",
+      "subs": "904",
+      "videos": 14,
+      "bio": "Fourteen videos, no filler.",
+      "works": ["Fan animation"],
+      "credit": "Key animator on Buggy Solos Sukuna",
+      "links": []
+    },
+    {
+      "slug": "finmal",
+      "name": "Finmal",
+      "handle": "@finmal",
+      "url": "https://www.youtube.com/@finmal",
+      "subs": "340",
+      "videos": 24,
+      "bio": "Just having fun with sakuga.",
+      "works": ["Sakuga", "Music"],
+      "credit": "Key animator on Buggy Solos Sukuna",
+      "links": [
+        { "label": "Spotify", "url": "https://open.spotify.com/artist/1kSLgqJiHPSN7oifGgs0lS" }
+      ]
+    },
+    {
+      "slug": "sasquatch",
+      "name": "Sasquatch the Animator",
+      "handle": "@SASQUATCH_animation",
+      "url": "https://www.youtube.com/@SASQUATCH_animation",
+      "subs": "677",
+      "videos": 37,
+      "bio": "Freelance animator working under the pen name Maasaki Amori. Takes work by the cut.",
+      "works": ["Freelance", "Sakuga"],
+      "credit": null,
+      "links": [
+        { "label": "Instagram", "url": "https://www.instagram.com/squatch._/" },
+        { "label": "TikTok", "url": "https://www.tiktok.com/@squatch420" }
+      ]
+    }
+  ]
+}
