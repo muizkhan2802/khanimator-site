@@ -90,16 +90,44 @@ select u.email from public.admins a join auth.users u on u.id = a.user_id;
 
 ## Approving pitches
 
-Pitches arrive with `status = 'pending'` and are invisible to everyone but
-their author and moderators. To approve one:
+Use the dashboard: **`/admin.html`** on the live site.
 
-**Table Editor → pitches** → change `status` to `approved`.
+It is not linked from the public nav and carries `noindex`, but neither of
+those is what protects it — an ordinary signed-in visitor who finds the URL
+sees "Not a moderator" and gets empty results, because the RLS policies refuse
+them. Bookmark it.
 
-Other values: `rejected` (hidden for good), `building` (shows an "In
-production" chip), `done` (shows "Animated").
+The dashboard gives you counts, a filterable queue with Approve / Reject /
+Mark in production / Mark animated / Delete, and the access log.
 
-You also get an email for each new pitch via the existing Netlify form, so you
-are not expected to sit watching the table.
+Statuses: `pending` → `approved` puts it on the board; `rejected` hides it for
+good; `building` shows an "In production" chip; `done` shows "Animated".
+
+You also get an email per new pitch through the Netlify form, so nothing
+depends on you watching the queue.
+
+## The access log
+
+Everything on the board that matters is recorded: pitches submitted, every
+status change with its before and after, deletions of pitches and replies, and
+sign-ins by signed-in users.
+
+It is written by database triggers running as `SECURITY DEFINER`, and the
+table has **no insert, update or delete policy at all**. So a moderator cannot
+approve something and then quietly erase the record — not through the site,
+not through the console. Only moderators can read it.
+
+**What it deliberately does not record:** IP addresses, user agents, or
+anything about visitors who are not signed in. That would make it a
+surveillance log of his audience rather than a record of actions taken on the
+board, and it would pull real privacy obligations onto a fan site. If you do
+want visitor analytics, that is a separate decision — use a privacy-preserving
+analytics tool rather than rolling it into this table.
+
+Sign-in rows are advisory rather than authoritative: they are written by the
+page when a signed-in session loads, collapse to one per hour, and a blocked
+script means no row. Moderation rows are the opposite — those come from the
+database and cannot be missed or forged.
 
 ## What is enforced where
 

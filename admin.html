@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Moderation — Khanimator</title>
+<!-- Not for search engines, and deliberately not linked from the public nav.
+     The real protection is the RLS policies, not the absence of a link. -->
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="/assets/img/logo.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="/index.html">
+      <img src="/assets/img/logo.jpg" alt="">
+      Khanimator
+    </a>
+    <ul class="nav__links">
+      <li><a href="/pitch.html">Board</a></li>
+      <li><a href="/index.html">Site</a></li>
+    </ul>
+    <button class="nav__toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="pagehead">
+    <div class="wrap">
+      <span class="eyebrow">Moderation</span>
+      <h1>The<br><span class="accent">dashboard</span></h1>
+      <p class="lead">
+        Approve what goes on the board, move things through production, and see
+        everything that has happened.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="admin-app">
+    <div class="wrap">
+
+      <div class="board-auth" id="admin-who"></div>
+      <div class="board-msg" id="admin-status" hidden></div>
+
+      <!-- not signed in -->
+      <div class="board-empty" id="admin-signedout" hidden>
+        <h3>Sign in to moderate</h3>
+        <p>This page only does anything for accounts marked as moderators.</p>
+      </div>
+
+      <!-- signed in, but not a moderator -->
+      <div class="board-empty" id="admin-denied" hidden>
+        <h3>Not a moderator</h3>
+        <p>That account has no moderation rights. If it should, it needs adding
+        to the admins table — the steps are in supabase/SETUP.md.</p>
+      </div>
+
+      <!-- the actual dashboard -->
+      <div id="admin-panel" hidden>
+
+        <div class="stats" id="admin-stats" style="margin-bottom:34px"></div>
+
+        <div class="section-head" style="margin-bottom:18px">
+          <div>
+            <span class="eyebrow">Queue</span>
+            <h2>Pitches</h2>
+          </div>
+        </div>
+
+        <nav class="subnav" style="position:static;margin-bottom:20px;border-radius:12px;border:1px solid var(--line)">
+          <div class="subnav__inner" id="admin-filters" style="padding-inline:12px"></div>
+        </nav>
+
+        <div id="admin-queue"></div>
+
+        <div class="section-head" style="margin:48px 0 18px">
+          <div>
+            <span class="eyebrow">Access log</span>
+            <h2>What's happened</h2>
+            <p>Written by the database itself, so it cannot be edited or deleted from here.</p>
+          </div>
+        </div>
+
+        <div class="logtable" id="admin-log"></div>
+
+      </div>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer__base" style="border-top:0;padding-top:0">
+      <span>Khanimator — moderation</span>
+      <span>Not publicly linked. Access is enforced by the database, not by this page.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/js/main.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="/assets/js/supabase-config.js"></script>
+<script src="/assets/js/admin.js"></script>
+</body>
+</html>

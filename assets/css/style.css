@@ -1574,6 +1574,57 @@ p:last-child { margin-bottom: 0; }
   color: var(--muted);
 }
 
+
+/* ------------------------------------------------------- moderation -- */
+
+.modrow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px 24px;
+  align-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 10px;
+}
+.modrow__text { margin: 0 0 6px; font-size: 1rem; line-height: 1.5; }
+.modrow__meta { font-size: .78rem; color: var(--dim); }
+.modrow__acts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+
+@media (max-width: 720px) {
+  .modrow { grid-template-columns: 1fr; }
+  .modrow__acts { justify-content: flex-start; }
+}
+
+/* The log is dense and scanned, so it is a table in all but markup. */
+.logtable {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.logrow {
+  display: grid;
+  grid-template-columns: 110px minmax(140px, 1fr) minmax(130px, 1fr) 2fr;
+  gap: 16px;
+  padding: 11px 18px;
+  font-size: .82rem;
+  border-bottom: 1px solid var(--line);
+  align-items: baseline;
+}
+.logrow:last-child { border-bottom: 0; }
+.logrow:nth-child(odd) { background: var(--surface); }
+
+.logrow__at     { color: var(--dim); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.logrow__who    { color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
+.logrow__what   { color: var(--accent); font-weight: 500; }
+.logrow__detail { color: var(--muted); overflow: hidden; text-overflow: ellipsis; }
+
+@media (max-width: 760px) {
+  .logrow { grid-template-columns: 1fr 1fr; gap: 4px 12px; }
+  .logrow__detail { grid-column: 1 / -1; }
+}
+
 /* ----------------------------------------------------------- cta band -- */
 
 .cta {
