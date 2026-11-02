@@ -1441,6 +1441,139 @@ p:last-child { margin-bottom: 0; }
 }
 .board-empty p { color: var(--muted); max-width: 44ch; margin-inline: auto; }
 
+
+/* ------------------------------------------------------- board (live) -- */
+
+.btn--sm { padding: 9px 18px; font-size: .82rem; }
+
+.board-auth {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+}
+.board-auth__note { font-size: .9rem; color: var(--muted); }
+.board-auth__who { display: flex; align-items: center; gap: 10px; font-size: .92rem; }
+.board-auth__badge {
+  font-size: .62rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  background: var(--accent);
+  color: var(--accent-ink);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.board-msg {
+  border-radius: 10px;
+  padding: 12px 16px;
+  font-size: .88rem;
+  margin-bottom: 18px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+}
+.board-msg--bad  { border-color: var(--blood); color: var(--blood); }
+.board-msg--good { border-color: #35d07f; color: #35d07f; }
+
+/* -------------------------------------------------------------- voting -- */
+
+.pitch__score {
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-width: 48px;
+}
+.pitch__n.is-pos { color: var(--accent); }
+.pitch__n.is-neg { color: var(--blood); }
+
+.vote {
+  width: 30px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  border: 1px solid transparent;
+  color: var(--dim);
+  transition: color .2s, background-color .2s, border-color .2s;
+}
+.vote svg { width: 17px; height: 17px; fill: currentColor; }
+.vote:hover:not(:disabled) { color: var(--text); background: var(--surface-2); }
+.vote:disabled { opacity: .35; cursor: not-allowed; }
+.vote--up.is-on   { color: var(--accent); border-color: var(--accent); }
+.vote--down.is-on { color: var(--blood);  border-color: var(--blood); }
+
+.pitch__replies {
+  margin-top: 10px;
+  font-size: .8rem;
+  color: var(--muted);
+  border-bottom: 1px dotted var(--line-strong);
+  padding-bottom: 1px;
+}
+.pitch__replies:hover { color: var(--accent); border-color: var(--accent); }
+
+/* ------------------------------------------------------------- threads -- */
+
+.thread {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 12px;
+}
+.thread__loading { font-size: .84rem; color: var(--dim); margin: 0; }
+
+.reply {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 12px 14px;
+}
+.reply__body { margin: 0 0 6px; font-size: .9rem; line-height: 1.5; }
+.reply__meta {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: .74rem;
+  color: var(--dim);
+}
+.reply__del {
+  font-size: .74rem;
+  color: var(--dim);
+  border-bottom: 1px dotted currentColor;
+}
+.reply__del:hover { color: var(--blood); }
+
+.reply-form { display: flex; gap: 10px; align-items: flex-start; }
+.reply-form textarea {
+  flex: 1;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 10px 12px;
+  color: var(--text);
+  font: inherit;
+  font-size: .88rem;
+  resize: vertical;
+}
+.reply-form textarea:focus { outline: none; border-color: var(--accent); }
+
+.pitch-gate {
+  background: var(--bg);
+  border: 1px dashed var(--line-strong);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  font-size: .9rem;
+  color: var(--muted);
+}
+
 /* ----------------------------------------------------------- cta band -- */
 
 .cta {
