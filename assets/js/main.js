@@ -168,6 +168,27 @@
     });
   }
 
+  /* ------------------------------------------------ character budget -- */
+  /* A pitch is capped at 100 characters. maxlength already enforces it, but
+     silently refusing keystrokes feels broken, so show the budget. */
+
+  document.querySelectorAll('[data-counter]').forEach(function (field) {
+    var out = document.getElementById(field.getAttribute('data-counter'));
+    if (!out) return;
+    var max = parseInt(field.getAttribute('maxlength') || '100', 10);
+    var num = out.querySelector('b');
+
+    var update = function () {
+      var n = field.value.length;
+      if (num) num.textContent = String(n);
+      out.classList.toggle('is-close', n >= max * 0.8 && n < max);
+      out.classList.toggle('is-full', n >= max);
+    };
+
+    field.addEventListener('input', update);
+    update();
+  });
+
   /* ---------------------------------------------------- footer year -- */
 
   document.querySelectorAll('[data-year]').forEach(function (el) {

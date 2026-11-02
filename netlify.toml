@@ -32,11 +32,19 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
-# Fingerprint-free assets, so cache conservatively but not forever.
+# CSS and JS filenames are not content-hashed, so a one-hour cache meant a
+# changed stylesheet could stay invisible to returning visitors for an hour.
+# max-age=0 + must-revalidate makes the browser check every time; unchanged
+# files come back as a 304 and cost almost nothing.
 [[headers]]
-  for = "/assets/*"
+  for = "/assets/css/*"
   [headers.values]
-    Cache-Control = "public, max-age=3600, must-revalidate"
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
 
 [[headers]]
   for = "/assets/img/*"

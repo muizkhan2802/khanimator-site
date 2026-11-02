@@ -1,0 +1,7 @@
+{
+  "_comment": "Approved pitches only. A pitch arrives by email (Netlify form 'pitch'); if Moiz approves it, add an entry here and run `python build.py`. Nothing reaches this file without his say-so, which is the whole moderation story for phase 1.",
+  "_phase": "Phase 1 is submission + moderation + display, all static. Voting and replies need a real backend and are deliberately not faked here — no placeholder counts, no sample pitches.",
+  "_fields": "id (short slug), text (<=100 chars), by (display name as submitted, never an email), date (ISO), status ('open' | 'building' | 'done'), video (YouTube id, once it exists)",
+
+  "pitches": []
+}
