@@ -517,6 +517,7 @@ def pitch_page(data):
 <script src="assets/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
 <script src="assets/js/supabase-config.js"></script>
+<script src="assets/js/notifications.js"></script>
 <script src="assets/js/pitch-board.js"></script>
 </body>
 </html>

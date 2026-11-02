@@ -79,20 +79,86 @@
 
     if (me) {
       var who = el('span', 'board-auth__who');
-      who.appendChild(el('b', null, me.user_metadata.full_name || me.email));
+      who.appendChild(el('b', null, displayName()));
       if (isAdmin) who.appendChild(el('span', 'board-auth__badge', 'moderator'));
       bar.appendChild(who);
 
+      var side = el('span', 'board-auth__side');
+
+      // The bell lives here so it is next to the identity it belongs to.
+      var mount = el('span', 'bell-mount');
+      side.appendChild(mount);
+
+      // Moderators need a way in. Everyone else never sees this exists.
+      if (isAdmin) {
+        var dash = el('a', 'btn btn--ghost btn--sm', 'Dashboard');
+        dash.href = 'admin.html';
+        side.appendChild(dash);
+      }
+
       var out = el('button', 'btn btn--ghost btn--sm', 'Sign out');
-      out.addEventListener('click', function () { sb.auth.signOut(); });
-      bar.appendChild(out);
-    } else {
-      bar.appendChild(el('span', 'board-auth__note',
-        'Sign in to pitch, vote and reply. One account, one vote.'));
-      var inBtn = el('button', 'btn btn--primary btn--sm', 'Sign in with Google');
-      inBtn.addEventListener('click', signIn);
-      bar.appendChild(inBtn);
+      out.addEventListener('click', function () {
+        if (window.KhanNotify) window.KhanNotify.unmount();
+        sb.auth.signOut();
+      });
+      side.appendChild(out);
+      bar.appendChild(side);
+
+      if (window.KhanNotify) window.KhanNotify.mount(sb, me, mount);
+      return;
     }
+
+    bar.appendChild(el('span', 'board-auth__note',
+      'Sign in to pitch, vote and reply. One account, one vote.'));
+
+    var btns = el('span', 'board-auth__side');
+
+    var g = el('button', 'btn btn--primary btn--sm', 'Sign in with Google');
+    g.addEventListener('click', signInGoogle);
+    btns.appendChild(g);
+
+    var m = el('button', 'btn btn--ghost btn--sm', 'Use email instead');
+    m.addEventListener('click', function () { emailPrompt(btns); });
+    btns.appendChild(m);
+
+    bar.appendChild(btns);
+  }
+
+  /* Passwordless email, for anyone who would rather not use Google. Supabase
+     mails a one-time link; no password to choose, forget or leak. */
+  function emailPrompt(container) {
+    if (document.getElementById('magic-form')) return;
+
+    var form = el('form', 'magic');
+    form.id = 'magic-form';
+
+    var input = document.createElement('input');
+    input.type = 'email';
+    input.required = true;
+    input.placeholder = 'you@example.com';
+    input.setAttribute('aria-label', 'Your email address');
+    form.appendChild(input);
+
+    var go = el('button', 'btn btn--primary btn--sm', 'Send link');
+    go.type = 'submit';
+    form.appendChild(go);
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      go.disabled = true;
+      sb.auth.signInWithOtp({
+        email: input.value.trim(),
+        options: { emailRedirectTo: window.location.origin + '/pitch.html' }
+      }).then(function (res) {
+        go.disabled = false;
+        if (res.error) { status(res.error.message, 'bad'); return; }
+        form.remove();
+        status('Check your email — the link signs you straight in.', 'good');
+      });
+    });
+
+    container.parentNode.appendChild(form);
+    input.focus();
   }
 
   function voteButton(pitch, dir) {
@@ -146,11 +212,31 @@
 
     card.appendChild(mid);
 
-    // status chip
+    // right-hand column: status chip, and a way out for your own pitch
+    var aside = el('div', 'pitch__aside');
+
     if (p.status !== 'approved') {
       var label = { building: 'In production', done: 'Animated' }[p.status] || p.status;
-      card.appendChild(el('span', 'pitch__status pitch__status--' + p.status, label));
+      aside.appendChild(el('span', 'pitch__status pitch__status--' + p.status, label));
     }
+
+    // RLS already allows an author to delete their own pitch; this is the UI
+    // for it. Moderators get the fuller controls on the dashboard instead.
+    if (me && p.author_id === me.id) {
+      var mine = el('button', 'pitch__mine', 'Delete');
+      mine.title = 'Delete your pitch';
+      mine.addEventListener('click', function () {
+        if (!window.confirm('Delete your pitch?\n\n"' + p.body + '"\n\nThis also removes its votes and replies.')) return;
+        sb.from('pitches').delete().eq('id', p.id).then(function (res) {
+          if (res.error) { status(explain(res.error), 'bad'); return; }
+          status('Pitch deleted.', 'good');
+          loadBoard();
+        });
+      });
+      aside.appendChild(mine);
+    }
+
+    if (aside.childNodes.length) card.appendChild(aside);
 
     return card;
   }
@@ -182,6 +268,7 @@
       .then(function (res) {
         if (res.error) { status(explain(res.error), 'bad'); return; }
         renderBoard(res.data || []);
+        if (me && window.KhanNotify) window.KhanNotify.refresh();
       });
   }
 
@@ -305,7 +392,7 @@
            (me && me.email ? me.email.split('@')[0] : 'anonymous');
   }
 
-  function signIn() {
+  function signInGoogle() {
     sb.auth.signInWithOAuth({
       provider: 'google',
       options: { redirectTo: window.location.origin + '/pitch.html' }

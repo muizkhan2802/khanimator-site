@@ -77,9 +77,24 @@
     if (isAdmin) who.appendChild(el('span', 'board-auth__badge', 'moderator'));
     bar.appendChild(who);
 
+    var side = el('span', 'board-auth__side');
+
+    var mount = el('span', 'bell-mount');
+    side.appendChild(mount);
+
+    var back = el('a', 'btn btn--ghost btn--sm', 'Board');
+    back.href = '/pitch.html';
+    side.appendChild(back);
+
     var out = el('button', 'btn btn--ghost btn--sm', 'Sign out');
-    out.addEventListener('click', function () { sb.auth.signOut(); });
-    bar.appendChild(out);
+    out.addEventListener('click', function () {
+      if (window.KhanNotify) window.KhanNotify.unmount();
+      sb.auth.signOut();
+    });
+    side.appendChild(out);
+    bar.appendChild(side);
+
+    if (window.KhanNotify) window.KhanNotify.mount(sb, me, mount);
   }
 
   /* -------------------------------------------------------------- stats -- */

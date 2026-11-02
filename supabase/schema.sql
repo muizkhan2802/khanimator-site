@@ -246,6 +246,7 @@ as
     p.id,
     p.body,
     p.display_name,
+    p.author_id,
     p.status,
     p.created_at,
     coalesce(v.score, 0)::int   as score,
