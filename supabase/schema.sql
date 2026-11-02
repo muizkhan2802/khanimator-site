@@ -239,7 +239,13 @@ create trigger replies_rate_limit
 -- makes the view obey the caller's RLS rather than the view owner's, so the
 -- moderation rules above still apply through it.
 
-create or replace view public.board
+-- Dropped first, not replaced: CREATE OR REPLACE VIEW can only append
+-- columns to the end of an existing view, so adding author_id in the
+-- middle fails with 42P16. Nothing depends on this view but the client,
+-- which queries it by column name.
+drop view if exists public.board;
+
+create view public.board
 with (security_invoker = on)
 as
   select

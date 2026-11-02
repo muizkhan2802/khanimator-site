@@ -149,9 +149,15 @@ grant execute on function public.mark_all_read() to authenticated;
 -- your own pitch. RLS still decides whether the delete is allowed; this only
 -- governs whether the button is drawn.
 --
--- Safe to run on an existing project: create-or-replace, no data touched.
+-- Safe to run on an existing project: a view holds no data of its own.
 
-create or replace view public.board
+-- Dropped first, not replaced: CREATE OR REPLACE VIEW can only append
+-- columns to the end of an existing view, so adding author_id in the
+-- middle fails with 42P16. Nothing depends on this view but the client,
+-- which queries it by column name.
+drop view if exists public.board;
+
+create view public.board
 with (security_invoker = on)
 as
   select
